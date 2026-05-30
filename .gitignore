@@ -1,0 +1,11 @@
+.DS_Store
+*.pyc
+__pycache__/
+*.psd
+*.pdf
+compile_single_file.py
+# Temporary Python scripts already deleted but ignored just in case
+find_matching_image.py
+find_closest_image_match.py
+extract_pptx_text.py
+extract_pptx_hyperlinks.py
