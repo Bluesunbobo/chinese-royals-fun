@@ -88,7 +88,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Collect all zoomable cards in order of appearance
     const zoomableCards = [];
     
-    // First, honor cards
+    // First, base cards
+    document.querySelectorAll('.base-card').forEach(card => {
+        const titleEl = card.querySelector('h3');
+        const descEl = card.querySelector('p');
+        zoomableCards.push({
+            imgSrc: card.querySelector('img').src,
+            title: titleEl ? titleEl.textContent : '',
+            desc: descEl ? descEl.textContent : '',
+            element: card
+        });
+    });
+    
+    // Then, honor cards
     document.querySelectorAll('.honor-card').forEach(card => {
         const titleEl = card.querySelector('h3');
         const descEl = card.querySelector('p');
