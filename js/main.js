@@ -28,11 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            header.style.background = 'rgba(15, 12, 8, 0.95)';
-            header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.5)';
+            header.style.background = 'rgba(250, 249, 246, 0.96)';
+            header.style.boxShadow = '0 4px 20px rgba(22, 101, 52, 0.06)';
             header.style.padding = '15px 50px';
         } else {
-            header.style.background = 'rgba(15, 12, 8, 0.7)';
+            header.style.background = 'rgba(250, 249, 246, 0.75)';
             header.style.boxShadow = 'none';
             header.style.padding = '20px 50px';
         }
