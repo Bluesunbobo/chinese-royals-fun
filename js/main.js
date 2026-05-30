@@ -55,24 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Touch interaction for photo cards on mobile/touch screens
-    const photoCards = document.querySelectorAll('.photo-card');
-    photoCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            // Only toggle on touch devices
-            if (window.matchMedia('(hover: none)').matches || 'ontouchstart' in window) {
-                if (card.classList.contains('active')) {
-                    card.classList.remove('active');
-                } else {
-                    photoCards.forEach(c => c.classList.remove('active'));
-                    card.classList.add('active');
-                }
-                e.stopPropagation();
-            }
-        });
-    });
-
-    // 5. Tab Switching Logic for About Section
+    // 4. Tab Switching Logic for About Section
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
     
@@ -91,5 +74,108 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetPane.classList.add('active');
             }
         });
+    });
+
+    // 5. Image Zoom Modal Logic
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-caption-title');
+    const modalDesc = document.getElementById('modal-caption-desc');
+    const closeBtn = document.getElementById('modal-close-btn');
+    const prevBtn = document.getElementById('modal-prev-btn');
+    const nextBtn = document.getElementById('modal-next-btn');
+
+    // Collect all zoomable cards in order of appearance
+    const zoomableCards = [];
+    
+    // First, honor cards
+    document.querySelectorAll('.honor-card').forEach(card => {
+        const titleEl = card.querySelector('h3');
+        const descEl = card.querySelector('p');
+        zoomableCards.push({
+            imgSrc: card.querySelector('img').src,
+            title: titleEl ? titleEl.textContent : '',
+            desc: descEl ? descEl.textContent : '',
+            element: card
+        });
+    });
+
+    // Then, celebrity photo cards
+    document.querySelectorAll('.photo-card').forEach(card => {
+        const titleEl = card.querySelector('h4');
+        const descEl = card.querySelector('p');
+        zoomableCards.push({
+            imgSrc: card.querySelector('img').src,
+            title: titleEl ? titleEl.textContent : '',
+            desc: descEl ? descEl.textContent : '',
+            element: card
+        });
+    });
+
+    let currentPhotoIndex = 0;
+
+    function openModal(index) {
+        currentPhotoIndex = index;
+        const data = zoomableCards[index];
+        modalImg.src = data.imgSrc;
+        modalTitle.textContent = data.title;
+        modalDesc.textContent = data.desc;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // prevent scrolling behind modal
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function showNext() {
+        let nextIndex = (currentPhotoIndex + 1) % zoomableCards.length;
+        openModal(nextIndex);
+    }
+
+    function showPrev() {
+        let prevIndex = (currentPhotoIndex - 1 + zoomableCards.length) % zoomableCards.length;
+        openModal(prevIndex);
+    }
+
+    // Attach click events to the cards
+    zoomableCards.forEach((cardData, index) => {
+        cardData.element.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openModal(index);
+        });
+    });
+
+    // Modal Control Events
+    closeBtn.addEventListener('click', closeModal);
+    prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showPrev();
+    });
+    nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        showNext();
+    });
+
+    // Click backdrop to close
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal || e.target.classList.contains('modal-content-container')) {
+            closeModal();
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('active')) return;
+        
+        if (e.key === 'Escape') {
+            closeModal();
+        } else if (e.key === 'ArrowRight') {
+            showNext();
+        } else if (e.key === 'ArrowLeft') {
+            showPrev();
+        }
     });
 });
