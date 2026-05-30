@@ -567,6 +567,34 @@ h1, h2, h3 {
 }
 
 /* Media Section */
+.media-tabs-header {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.media-tab-btn {
+    padding: 10px 25px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: var(--transition-smooth);
+}
+
+.media-tab-btn:hover,
+.media-tab-btn.active {
+    color: var(--accent-red);
+    border-color: var(--accent-red);
+    box-shadow: 0 0 15px rgba(22, 101, 52, 0.1);
+    background: rgba(22, 101, 52, 0.05);
+}
+
 .media-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

@@ -578,6 +578,34 @@ h1, h2, h3 {
 }
 
 /* Media Section */
+.media-tabs-header {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.media-tab-btn {
+    padding: 10px 25px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: var(--transition-smooth);
+}
+
+.media-tab-btn:hover,
+.media-tab-btn.active {
+    color: var(--accent-red);
+    border-color: var(--accent-red);
+    box-shadow: 0 0 15px rgba(22, 101, 52, 0.1);
+    background: rgba(22, 101, 52, 0.05);
+}
+
 .media-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1196,63 +1224,160 @@ h1, h2, h3 {
     <section id="media" class="section media-section">
         <div class="container reveal">
             <h2 class="section-title">媒体聚焦</h2>
-            <p class="section-desc">御苑福膳“药食同源”与“鲜药入膳”新实践获得央视、人民网及多家主流媒体的深度报道。</p>
+            <p class="section-desc">御苑福膳“药食同源”与“鲜药入膳”新实践获得央视、北京卫视、新华社、人民网及多家权威媒体的报道。</p>
+            
+            <div class="media-tabs-header">
+                <button class="media-tab-btn active" data-media-filter="all">全部报道</button>
+                <button class="media-tab-btn" data-media-filter="cctv">央视 & 外宣</button>
+                <button class="media-tab-btn" data-media-filter="brtv">北京卫视 (BRTV)</button>
+                <button class="media-tab-btn" data-media-filter="press">图文 & 人物纪</button>
+            </div>
             
             <div class="media-grid">
-                <!-- CGTN -->
-                <div class="media-card glass-card hover-glow">
-                    <div class="media-badge video">视频报道</div>
-                    <h3>CGTN 西语频道外宣报道</h3>
-                    <p>面向全球宣传中卫御苑福膳“药食同源”与“鲜药入膳”的创新健康餐饮实践。</p>
-                    <a href="https://weibo.com/tv/show/1034:4874071587094551?from=old_pc_videoshow" target="_blank" class="media-link">观看视频 ↗</a>
+                <!-- CCTV & CGTN Group -->
+                <div class="media-card glass-card hover-glow" data-category="cctv">
+                    <div class="media-badge video">外宣报道</div>
+                    <h3>CGTN 西语频道外宣专题</h3>
+                    <p>“民生中国：药食同源的传统新实践”专题片面向全球播送，宣传御苑福膳鲜药入膳健康餐饮模式。</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="https://weibo.com/tv/show/1034:4874071587094551?from=old_pc_videoshow" target="_blank" class="media-link" style="padding-bottom: 0;">微博视频 ↗</a>
+                        <a href="https://espanol.cgtn.com/news/2023-02-28/1630400188133986306/index.html%20" target="_blank" class="media-link" style="color: var(--primary-gold); padding-bottom: 0;">官方网页 ↗</a>
+                    </div>
                 </div>
-                
-                <!-- CCTV -->
-                <div class="media-card glass-card hover-glow">
-                    <div class="media-badge video">视频报道</div>
+
+                <div class="media-card glass-card hover-glow" data-category="cctv">
+                    <div class="media-badge video">视频直播</div>
                     <h3>CCTV 央视频特别直播</h3>
-                    <p>中央电视台知名主持人十一特别直播，深入御苑录制中医药膳养生系列内容。</p>
+                    <p>“以鲜药入膳，做十一假日美食”特别直播。央视知名主持人王曦梁亲临现场，录制药膳养生体验。</p>
                     <a href="https://www.yangshipin.cn/video/home?vid=u000011mgnb" target="_blank" class="media-link">前往央视频 ↗</a>
                 </div>
-                
-                <!-- Weibo -->
-                <div class="media-card glass-card hover-glow">
+
+                <div class="media-card glass-card hover-glow" data-category="cctv">
                     <div class="media-badge video">视频报道</div>
-                    <h3>人民日报新媒体平台报道</h3>
-                    <p>人民网及新媒体平台“人民号”深度精选报道，展示非遗药膳的文化魅力与现代传承。</p>
-                    <a href="https://www.bilibili.com/video/BV1gP4y197BB/?vd_source=e6b05332ead72dadd6d11870e446eeb8" target="_blank" class="media-link">观看报道 ↗</a>
+                    <h3>人民日报 App《万象中国》</h3>
+                    <p>人民网与《万象中国》推出系列专题片“美味的药：良药可口，药食同源”，深度解构御用药膳魅力。</p>
+                    <a href="https://wap.peopleapp.com/video/rmh32607698/rmh32607698" target="_blank" class="media-link">观看视频 ↗</a>
                 </div>
 
-                <!-- VisitBeijing -->
-                <div class="media-card glass-card hover-glow">
-                    <div class="media-badge article">图文报道</div>
-                    <h3>北京旅游网官方专题报道</h3>
-                    <p>中卫御苑福膳成功入选“北京入境旅游新兴文化和旅游目的地”官方推荐名单。</p>
-                    <a href="https://www.visitbeijing.com.cn/article/4CWhenvvONV" target="_blank" class="media-link">阅读全文 ↗</a>
+                <div class="media-card glass-card hover-glow" data-category="cctv">
+                    <div class="media-badge video">电视报道</div>
+                    <h3>CCTV-10《味道》养生药膳</h3>
+                    <p>快手“新华社快看”转发专题，点赞推荐御苑福膳为“北京首屈一指的养生药膳”。</p>
+                    <span class="media-link" style="color: var(--text-muted); border: none; cursor: default;">新华社快看报道</span>
                 </div>
 
-                <!-- ChinaNews -->
-                <div class="media-card glass-card hover-glow">
-                    <div class="media-badge article">图文报道</div>
-                    <h3>中国新闻网专题报道</h3>
-                    <p>“鲜药入膳”开创健康药膳新天地，详细剖析御苑福膳在中医药膳应用上的卓越航向。</p>
-                    <a href="https://www.ha.chinanews.com.cn/news/khn/2024/0305/51851.shtml" target="_blank" class="media-link">阅读全文 ↗</a>
+                <div class="media-card glass-card hover-glow" data-category="cctv">
+                    <div class="media-badge video">电视节目</div>
+                    <h3>CCTV-1《夕阳红》清明美食</h3>
+                    <p>2025年清明特别节目“浪漫节气·清明 -- 美食篇”，专访并探索传统二十四节气养生药膳技艺。</p>
+                    <a href="https://tv.cctv.cn/2025/04/01/VIDEN6nnQKnbPtwBYxemV2hz250401.shtml?spm=C81395.P1fJ1RK9RcXH.EAAvCzhVPKf7.32" target="_blank" class="media-link">观看视频 ↗</a>
                 </div>
 
-                <!-- BRTV 1 -->
-                <div class="media-card glass-card hover-glow">
+                <div class="media-card glass-card hover-glow" data-category="cctv">
+                    <div class="media-badge video">电视节目</div>
+                    <h3>CCTV-1《夕阳红》谷雨美食</h3>
+                    <p>2025年谷雨特别节目“浪漫节气·谷雨 -- 美食篇”，科普谷雨时节调理进补法及药理膳食调和。</p>
+                    <a href="https://tv.cctv.cn/2025/04/19/VIDEhnWyrd3Vumy3KyGQz2rD250419.shtml" target="_blank" class="media-link">观看视频 ↗</a>
+                </div>
+
+                <div class="media-card glass-card hover-glow" data-category="cctv">
+                    <div class="media-badge video">电视节目</div>
+                    <h3>CCTV-1《夕阳红》立夏养生</h3>
+                    <p>2025年立夏特别节目“浪漫节气·立夏 -- 美食养生”，传授立夏消暑、鲜药入膳的膳食方。</p>
+                    <a href="https://tv.cctv.cn/2025/05/07/VIDE88ZlAMVmQnViGR7yhutI250507.shtml" target="_blank" class="media-link">观看视频 ↗</a>
+                </div>
+
+                <div class="media-card glass-card hover-glow" data-category="cctv">
+                    <div class="media-badge video">电视节目</div>
+                    <h3>CCTV-1《夕阳红>小满养生</h3>
+                    <p>2025年小满特别节目“浪漫节气·小满 -- 美食养生”，现场连线介绍时令养心健脾食疗法。</p>
+                    <a href="https://m.yangshipin.cn/portrait_video?vid=v000046rf1t&cid=ct0zpchir5wprcg&pageContext=btype%3Dforum%26cpid%3D18141107193779522%26ctype%3Dcpid%26from%3D100013%26state%3Dinit%26ts%3D1747970089%26vid%3Dv000046rf1t" target="_blank" class="media-link">前往央视频 ↗</a>
+                </div>
+
+                <!-- BRTV Group -->
+                <div class="media-card glass-card hover-glow" data-category="brtv">
                     <div class="media-badge video">视频报道</div>
-                    <h3>BRTV《气象观天下》节气栏目</h3>
-                    <p>北京电视台栏目组现场拍摄，邀请非遗传承人侯仲华大师作为特邀嘉宾讲解时令养生。</p>
+                    <h3>BRTV《气象观天下》清明美食</h3>
+                    <p>北京电视台栏目组现场拍摄，特邀非遗传承人侯仲华大师作为特邀嘉宾讲解清明时令养生药膳。</p>
                     <a href="https://item.btime.com/23mqa66mteu42l7flcm8c6e93n9" target="_blank" class="media-link">观看视频 ↗</a>
                 </div>
 
-                <!-- BRTV 2 -->
-                <div class="media-card glass-card hover-glow">
+                <div class="media-card glass-card hover-glow" data-category="brtv">
                     <div class="media-badge video">视频报道</div>
-                    <h3>BRTV 节气膳食录像集锦</h3>
-                    <p>北京电视台多次走进中卫御苑福膳，现场拍摄和录制二十四节气系列科普节目。</p>
+                    <h3>BRTV《气象观天下》端午艾草</h3>
+                    <p>端午节气特别节目“碧艾香蒲处处忙，五月初五艾草香”。现场拍摄端午艾草入膳与养生调理。</p>
                     <a href="https://item.btime.com/270npqm0c1bvg7skepued5bcn9t" target="_blank" class="media-link">观看视频 ↗</a>
+                </div>
+
+                <div class="media-card glass-card hover-glow" data-category="brtv">
+                    <div class="media-badge video">视频报道</div>
+                    <h3>BRTV《气象观天下》端午缠角粽</h3>
+                    <p>端午节气特别科普“五月榴花妖艳烘，五色新丝缠角粽”，详细解密粽膳膳食养生知识。</p>
+                    <a href="https://item.btime.com/279bbb6ojj52djsmjf02vpeu1l0" target="_blank" class="media-link">观看视频 ↗</a>
+                </div>
+
+                <div class="media-card glass-card hover-glow" data-category="brtv">
+                    <div class="media-badge video">视频报道</div>
+                    <h3>BRTV《气象观天下》惊蛰龙抬头</h3>
+                    <p>惊蛰民俗养生节目“春雷响，万物长，惊蛰遇上龙抬头”，现场演示阳春惊蛰节气食疗膳食方案。</p>
+                    <a href="https://item.btime.com/23pvickatrh00ij5tf3lotf1ck0" target="_blank" class="media-link">观看视频 ↗</a>
+                </div>
+
+                <div class="media-card glass-card hover-glow" data-category="brtv">
+                    <div class="media-badge video">视频报道</div>
+                    <h3>BRTV《气象观天下》话清明</h3>
+                    <p>清明气象文化专题节目“人间四月天，寄情话清明”，详细解析清明假期前后的中医健康进补建议。</p>
+                    <a href="https://item.btime.com/223t1jhs2icmtf45d9ii4fuqtgk" target="_blank" class="media-link">观看视频 ↗</a>
+                </div>
+
+                <div class="media-card glass-card hover-glow" data-category="brtv">
+                    <div class="media-badge video">视频报道</div>
+                    <h3>BRTV《气象观天下》冬至小团圆</h3>
+                    <p>冬至气象科普特别节目“冬至大如年，人间小团圆”，细致讲解我国南北冬至药膳习俗与养生方。</p>
+                    <a href="https://item.btime.com/276borr6am09639jlvj3s7tf9cd" target="_blank" class="media-link">观看视频 ↗</a>
+                </div>
+
+                <div class="media-card glass-card hover-glow" data-category="brtv">
+                    <div class="media-badge video">视频报道</div>
+                    <h3>BRTV《气象观天下》冬至好时光</h3>
+                    <p>冬至民俗养生节目“围炉赏景话民俗，莫要辜负冬至好时光”，现场展示严冬进补的中医药理机制。</p>
+                    <a href="https://item.btime.com/2616fo3cp25rj4g590qtn0iso1r" target="_blank" class="media-link">观看视频 ↗</a>
+                </div>
+
+                <!-- Press / Figure Profiles Group -->
+                <div class="media-card glass-card hover-glow" data-category="press">
+                    <div class="media-badge article">图文报道</div>
+                    <h3>北京旅游网官方专题报道</h3>
+                    <p>中卫御苑福膳成功入选“北京入境旅游新兴文化和旅游目的地”官方推荐名单（中医药健康篇）。</p>
+                    <a href="https://www.visitbeijing.com.cn/article/4CWhenvvONV" target="_blank" class="media-link">阅读全文 ↗</a>
+                </div>
+
+                <div class="media-card glass-card hover-glow" data-category="press">
+                    <div class="media-badge article">图文报道</div>
+                    <h3>中新网人物纪 · 朱怀彬专题</h3>
+                    <p>《走南闯北长垣人》系列报道之“朱怀彬：烟火京华”，专访董事长传承中医药膳精髓的奋斗轨迹。</p>
+                    <a href="https://www.ha.chinanews.com.cn/news/khn/2024/0305/51851.shtml" target="_blank" class="media-link">阅读全文 ↗</a>
+                </div>
+
+                <div class="media-card glass-card hover-glow" data-category="press">
+                    <div class="media-badge article">图文报道</div>
+                    <h3>中新网人物纪 · 侯中华专题</h3>
+                    <p>《走南闯北长垣人》系列报道之“侯中华：人生知味”，专访御苑福膳技术指导、国宴大师侯仲华工匠人生。</p>
+                    <a href="https://www.ha.chinanews.com.cn/news/dfxw/2024/0219/51510.shtml" target="_blank" class="media-link">阅读全文 ↗</a>
+                </div>
+
+                <div class="media-card glass-card hover-glow" data-category="press">
+                    <div class="media-badge article">图文报道</div>
+                    <h3>中国日报 ·“爱心拐杖”项目</h3>
+                    <p>温情讲述“餐从哪里来”——马连洼街道“爱心拐杖”云端老年食堂项目现场交流邀请会专题纪实。</p>
+                    <a href="https://caijing.chinadaily.com.cn/a/202604/20/WS69e59226a310942cc49a8518.html" target="_blank" class="media-link">阅读全文 ↗</a>
+                </div>
+
+                <div class="media-card glass-card hover-glow" data-category="press">
+                    <div class="media-badge article">学术课程</div>
+                    <h3>《汉语桥》线上交流药膳课程</h3>
+                    <p>线上交流团组项目，承录“探秘中医药膳养生密码——药食同源，膳以养生”中英双语系列视频课程。</p>
+                    <span class="media-link" style="color: var(--text-muted); border: none; cursor: default;">中外线上交流合作课程</span>
                 </div>
             </div>
         </div>
@@ -1465,6 +1590,35 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (e.key === 'ArrowLeft') {
             showPrev();
         }
+    });
+    // 6. Media Tabs Filter Logic
+    const mediaTabBtns = document.querySelectorAll('.media-tab-btn');
+    const mediaCards = document.querySelectorAll('.media-card');
+    
+    mediaTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.getAttribute('data-media-filter');
+            
+            // Toggle active classes on tab buttons
+            mediaTabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            mediaCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    card.style.display = 'flex';
+                    // Trigger animation
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(15px)';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
     });
 });
 

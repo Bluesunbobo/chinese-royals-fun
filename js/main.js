@@ -178,4 +178,33 @@ document.addEventListener('DOMContentLoaded', () => {
             showPrev();
         }
     });
+    // 6. Media Tabs Filter Logic
+    const mediaTabBtns = document.querySelectorAll('.media-tab-btn');
+    const mediaCards = document.querySelectorAll('.media-card');
+    
+    mediaTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.getAttribute('data-media-filter');
+            
+            // Toggle active classes on tab buttons
+            mediaTabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            mediaCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    card.style.display = 'flex';
+                    // Trigger animation
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(15px)';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
 });
